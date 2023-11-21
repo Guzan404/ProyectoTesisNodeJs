@@ -1,0 +1,51 @@
+<!-- Navbar Start -->
+<div class="container-fluid position-relative nav-bar p-0">
+    <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
+            <a href="" class="navbar-brand">
+                <h1 class="m-0 text-primary"><span class="text-dark">KARAOKE</span>TEXT</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                <div class="navbar-nav ml-auto py-0">
+                    <a class="nav-item nav-link" href="/">INICIO</a>
+                    <% if(isAuthenticated) {%>
+                        <a class="<%= path === '/estudiante/estudiantes' ? 'active' : '' %> nav-item nav-link" href="/estudiante/estudiantes">ESTUDIANTES
+                        </a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">TEST</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a class="<%= path === '/upload' ? 'active' : '' %> nav-item nav-link" href="/text/upload">TEXTOS</a>
+                                <a href="single.html" class="dropdown-item">KARAOKE</a>
+                                <a href="destination.html" class="dropdown-item">RESULTADOS</a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MI CUENTA</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a href="blog.html" class="dropdown-item">MIS DATOS</a>
+                                <a href="single.html" class="dropdown-item">MI PLAN</a>
+                                <form class="nav-item nav-link" action="/logout" method="POST">
+                                    <button type="submit">CERRAR SESIÓN</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }else{ %>
+                        <a class="nav-item nav-link" href="/">PLANES</a>
+                        <a href="package.html" class="nav-item nav-link">SERVICIOS</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">SESIÓN</a>
+                            <div class="dropdown-menu border-0 rounded-0 m-0">
+                                <a class="<%= path === '/login' ? 'active' : '' %> nav-item nav-link" href="/login">INICIAR SESIÓN</a>
+                                <a class="<%= path === '/signup' ? 'active' : '' %> nav-item nav-link" href="/signup">REGISTRARSE</a>
+                            </div>
+                        </div>
+                        
+                    <% } %>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

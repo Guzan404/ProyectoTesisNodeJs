@@ -1,0 +1,30 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <form class="login-form" action="/signup" method="POST">
+            <div class="form-control">
+                <label for="nombre">NOMBRE</label>
+                <input type="nombre" name="nombre" id="nombre">
+            </div>
+            <div class="form-control">
+                <label for="correo">CORREO</label>
+                <input type="correo" name="correo" id="correo">
+            </div>
+            <div class="form-control">
+                <label for="contraseña">CONTRASEÑA</label>
+                <input type="contraseña" name="contraseña" id="contraseña">
+            </div>
+            <div class="form-control">
+                <label for="confirmcontraseña">CONFIMAR CONTRASEÑA</label>
+                <input type="contraseña" name="confirmcontraseña" id="confirmcontraseña">
+            </div>
+            <button class="btn" type="submit">CREAR CUENTA</button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>

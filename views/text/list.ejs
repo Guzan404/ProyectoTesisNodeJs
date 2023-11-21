@@ -1,0 +1,23 @@
+<!-- views/text/list.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= pageTitle %></title>
+</head>
+
+<body>
+  <h1><%= pageTitle %></h1>
+
+  <% if (pdfs.length === 0) { %>
+    <p>No hay textos disponibles.</p>
+  <% } else { %>
+    <p>trabajando para mostrar aquim</p>
+  <% } %>
+  <a href="/text/upload">Subir un nuevo texto</a>
+  
+</body>
+
+</html>

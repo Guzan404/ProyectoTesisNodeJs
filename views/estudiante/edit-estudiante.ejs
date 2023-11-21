@@ -1,0 +1,33 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/estudiante.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <form class="estudiante" action="/estudiante/<% if (editing) { %>edit-estudiante<% } else { %>add-estudiante<% } %>" method="POST">
+            <div class="form-control">
+                <label for="nombre">Nombre </label>
+                <input type="text" name="nombre" id="nombre" value="<% if (editing) { %><%= estudiante.nombre %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="apellido">Apellido </label>
+                <input type="text" name="apellido" id="apellido" value="<% if (editing) { %><%= estudiante.apellido %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="edad">Edad </label>
+                <input type="Number" name="edad" id="edad" value="<% if (editing) { %><%= estudiante.edad %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="curso">Curso </label>
+                <input type="text" name="curso" id="curso" value="<% if (editing) { %><%= estudiante.curso %><% } %>">
+            </div>
+            <% if (editing) { %>
+                <input type="hidden" value="<%= estudiante._id %>" name="estudianteId">
+            <% } %>
+            <button class="btn" type="submit"><% if (editing) { %>Actualizar estudiante<% } else { %> Aañadir estudiante<% } %></button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>
