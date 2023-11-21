@@ -55,13 +55,13 @@ exports.postPdf = async (req, res, next) => {
 
 exports.listTexts = async (req, res, next) => {
   try {
-    const pdfs = await PdfModel.find();
+    const pdfs = await PdfText.find({ userId: req.user._id });
     res.render('text/list', {
       pageTitle: 'Lista de Textos',
       path: 'text/list',
       pdfs: pdfs,
     });
   } catch (error) {
-    res.status(500).json({ error: 'Error al obtener la lista de textos' });
+    res.status(500).json({ error: 'Error al obtener la lista de textos', details: error.message });
   }
 };
