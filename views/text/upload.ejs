@@ -1,13 +1,41 @@
 <%- include('../includes/head.ejs') %>
 </head>
-
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-      <h1>Subir Archivo PDF</h1>
-      <form action="/text/upload" method="POST" enctype="multipart/form-data">
-        <input type="file" name="pdfFile" accept=".pdf" />
-        <button type="submit">Subir</button>
-      </form>
+        <div>
+            <h1>Subir Archivo PDF</h1>
+            <form action="/text/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="pdfFile" accept=".pdf" />
+                <button type="submit">Subir</button>
+            </form>
+        </div>
+
+        <div>
+            <h1>Lista de Textos</h1>
+
+            <% if (pdfs.length === 0) { %>
+                <h1>Sin Textos</h1>
+            <% } else { %>
+                <div class="grid">
+                    <% pdfs.forEach(function(pdf) { %>
+                        <article class="card PdfText-item">
+                            <header class="card__header">
+                                <h1 class="PdfText__nombre">
+                                    <h2><%= pdf.name %></h2>
+                                </h1>
+                            </header>
+                            <div class="card__actions">
+                                <a href="/text/edit/<%= pdf._id %>?edit=true" class="btn">Editar</a>
+                                <form action="/text/delete" method="POST">
+                                    <input type="hidden" value="<%= pdf._id %>" name="pdfId">
+                                    <button class="btn" type="submit">Eliminar</button>
+                                </form>
+                            </div>
+                        </article>
+                    <% }); %>
+                </div>
+            <% } %>
+        </div>
     </main>
-<%- include('../includes/end.ejs') %>
+    <%- include('../includes/end.ejs') %>

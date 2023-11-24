@@ -33,12 +33,14 @@ exports.postAddEstudiante= (req, res, next) => {
     });
 };
 exports.getEstudiantes = (req, res, next) => {
-  Estudiante.find()
-    .then(estudiante => {
+  const userId = req.user._id; // Obtener el ID del usuario actual
+
+  Estudiante.find({ userId: userId })
+    .then(estudiantes => {
       res.render('estudiante/estudiantes', {
-        prods: estudiante,
-        pageTitle: 'Todos los estudiantes',
-        path: '/estudiante'
+        prods: estudiantes,
+        pageTitle: 'Estudiantes',
+        path: '/estudiante/estudiantes'
       });
     })
     .catch(err => {
