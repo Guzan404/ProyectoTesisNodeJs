@@ -1,0 +1,72 @@
+<!-- Agrega esto en el encabezado de tu archivo de diseño o en la plantilla base -->
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/estudiante.css">
+<!-- Agrega referencia a Bootstrap -->
+
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="container mt-3">
+        <h1>Karaoke</h1>
+
+        <!-- Seleccionar Texto -->
+        <div class="form-group">
+            <label for="text">Seleccionar Texto:</label>
+            <select class="form-control" name="text" id="text">
+                <% pdfs.forEach(pdf => { %>
+                    <option value="<%= pdf._id %>"><%= pdf.name %></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <!-- Seleccionar Velocidad de Lectura -->
+        <div class="form-group">
+            <label for="speed">Seleccionar Velocidad de Lectura:</label>
+            <select class="form-control" name="speed" id="speed">
+                <option value="1">Lenta</option>
+                <option value="2">Normal</option>
+                <option value="3">Rápida</option>
+            </select>
+        </div>
+
+        <!-- Seleccionar Fecha -->
+        <div class="form-group">
+            <label for="date">Seleccionar Fecha:</label>
+            <input type="date" class="form-control" name="date" id="date" required>
+        </div>
+
+        <!-- Seleccionar Estudiante -->
+        <div class="form-group">
+            <label for="estudiante">Seleccionar Estudiante:</label>
+            <select class="form-control" name="estudiante" id="estudiante">
+                <% estudiantes.forEach(estudiante => { %>
+                    <option value="<%= estudiante._id %>"><%= estudiante.nombre %></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <!-- Formulario de Inicio de Karaoke -->
+        <form action="/karaoke/iniciar" method="post">
+            <input type="hidden" name="pdfId" id="selectedPdfId">
+            <button type="submit" class="btn btn-primary mt-2">Iniciar Karaoke</button>
+        </form>
+    </main>
+
+    <!-- Agrega referencias a los scripts de Bootstrap y jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // JavaScript para manejar la selección del texto en el dropdown
+        $('.dropdown-item').on('click', function () {
+            const pdfId = $(this).data('pdfid');
+            $('#selectedPdfId').val(pdfId);
+            $('.btn-secondary').text($(this).text());
+        });
+    </script>
+
+    <%- include('../includes/end.ejs') %>
+</body>
