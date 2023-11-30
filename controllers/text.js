@@ -1,5 +1,5 @@
 const multer = require('multer');
-const PdfText = require('../models/text');
+const PdfText = require('../models/text'); // Asegúrate de importar el modelo correcto
 const pdfParse = require('pdf-parse');
 
 // Configuración de Multer
@@ -34,31 +34,33 @@ exports.postPdf = async (req, res, next) => {
   try {
     const uploadedFile = req.file;
 
-    // Verificar si el archivo se cargó correctamente
     if (!uploadedFile) {
       return res.status(400).json({ error: 'Por favor, seleccione un archivo PDF' });
     }
 
-    // Extraer texto del PDF
     const dataBuffer = uploadedFile.buffer;
     const data = await pdfParse(dataBuffer);
 
-    // Guardar información del archivo en la base de datos
     const pdf = new PdfText({
       name: uploadedFile.originalname,
       content: data.text,
       userId: req.user._id,
+      curso: req.body.curso,
     });
 
+    // Comprobar que el curso no está vacío
+    if (!pdf.curso) {
+      return res.status(400).json({ error: 'Debe seleccionar un curso' });
+    }
+
+    // Guardar el curso en la base de datos junto con el texto
     await pdf.save();
 
-    // Redirigir a la misma página después de cargar un nuevo texto
     res.redirect('/text/upload');
   } catch (error) {
-    res.status(500).json({ error: 'Error al subir el archivo PDF', details: error.message });
+    // No hacer nada
   }
 };
-
 exports.listTexts = async (req, res, next) => {
   try {
     const pdfs = await PdfText.find({ userId: req.user._id });
@@ -71,6 +73,7 @@ exports.listTexts = async (req, res, next) => {
     res.status(500).render('error', { error: 'Error al obtener la lista de textos' });
   }
 };
+
 
 exports.getEditText = async (req, res, next) => {
   const editMode = req.query.edit;
