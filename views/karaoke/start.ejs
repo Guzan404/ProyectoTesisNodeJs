@@ -1,0 +1,25 @@
+<%- include('../includes/head.ejs') %>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="/js/karaoke.js"></script>
+<link rel="stylesheet" href="/css/karaoke.css">
+</head>
+
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  <main class="container mt-3">
+    <h1>Karaoke Start</h1>
+
+    <button id="start">Cuenta Regresiva</button>
+    <div id="countdown"></div>
+    <div id="text-content">
+      <% for (let i = 0; i < pdfs.length; i++) { %>
+        <% if (pdfs[i]._id == data.pdfId) { %>
+          <p id="karaoke-text"><%= pdfs[i].content %></p>
+        <% } %>
+      <% } %>
+    </div>
+  </main>
+  <%- include('../includes/end.ejs') %>
+</body>
+</html>

@@ -1,50 +1,38 @@
-// Obtén los elementos del formulario
-const karaokeForm = document.getElementById('karaokeForm');
-const textSelect = document.getElementById('textSelect');
-const speedRange = document.getElementById('speedRange');
-const startPoint = document.getElementById('startPoint');
+$(document).ready(function() {
+  $('#start').click(function() {
+    var counter = 3;
 
-// Función para iniciar el karaoke
-function startKaraoke() {
-  const selectedTextId = textSelect.value;
-  const selectedSpeed = speedRange.value;
-  const selectedStartPoint = startPoint.value;
+    function decrementCounter() {
+      if (counter === 0) {
+        clearInterval(interval);
 
-  // Realiza una solicitud al servidor para obtener el contenido del texto seleccionado
-  fetch(`/api/getTextContent/${selectedTextId}`)
-    .then(response => response.json())
-    .then(data => {
-      // Limpia el contenedor del karaoke
-      const karaokeContainer = document.getElementById('karaoke-container');
-      karaokeContainer.innerHTML = '';
+        // Divide el texto en palabras
+        var words = $('#karaoke-text').text().split(' ');
 
-      // Divide el contenido del texto en líneas
-      const lines = data.content.split('\n');
+        // Vacía el contenedor de texto
+        $('#text-content').empty();
 
-      // Filtra las líneas según el punto de inicio seleccionado
-      const startIndex = lines.findIndex(line => line.includes(selectedStartPoint));
-      const filteredLines = startIndex !== -1 ? lines.slice(startIndex) : lines;
+        // Recorre cada palabra y crea un span para cada una
+        words.forEach(function(word, index) {
+          var newWord = $('<span>').text(word + ' ').css('opacity', 0);
+          $('#text-content').append(newWord);
 
-      // Recorre las líneas y agrega elementos al contenedor del karaoke
-      filteredLines.forEach((line, index) => {
-        const karaokeLine = document.createElement('div');
-        karaokeLine.classList.add('karaoke-line');
-        karaokeLine.style.opacity = 0;
-        karaokeLine.innerText = line;
+          // Anima cada palabra individualmente con Anime.js
+          anime({
+            targets: newWord.get(0),
+            opacity: [0, 1],
+            delay: index * 500, // Ajusta este valor para cambiar la velocidad de la animación
+            duration: 1000, // Ajusta este valor para cambiar cuánto tiempo se muestra cada palabra
+            easing: 'linear',
+          });
+        });
+        return;
+      }
 
-        karaokeContainer.appendChild(karaokeLine);
-      });
+      counter--;
+      $('#countdown').html(counter);
+    }
 
-      // Inicia la animación con anime.js
-      anime({
-        targets: '.karaoke-line',
-        opacity: 1,
-        easing: 'linear',
-        duration: selectedSpeed * 1000,
-        delay: (el, i) => i * (selectedSpeed * 100),
-      });
-    })
-    .catch(error => {
-      console.error('Error al obtener el contenido del texto:', error);
-    });
-}
+    const interval = setInterval(decrementCounter, 1000);
+  });
+});

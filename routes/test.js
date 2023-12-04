@@ -7,5 +7,5 @@ const karaokeController = require('../controllers/test'); // Asegúrate de impor
 
 // Ruta para mostrar la vista de karaoke con las opciones
 router.get('/test', karaokeController.getViewKaraoke);
-
+router.get('/start',karaokeController.getViewKaraokeStart);
 module.exports = router;

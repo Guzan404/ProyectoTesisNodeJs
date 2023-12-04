@@ -34,10 +34,6 @@ const testSchema = new mongoose.Schema({
     },
     observaciones: {
         type: String
-    },
-    inicioKaraoke: {
-        type: Number, // Almacena la posición de inicio del karaoke
-        required: true
     }
 });
 
