@@ -1,0 +1,28 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/sesion.css">
+
+</head>
+
+<body>
+
+    <main>
+        <form class="user-form" action="/user/<% if (editing) { %>edit-user<% } else { %>add-user<% } %>" method="POST">
+            <div class="form-control">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" id="nombre" value="<% if (editing) { %><%= user.nombre %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="correo">Correo</label>
+                <input type="text" name="correo" id="correo" value="<% if (editing) { %><%= user.correo %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="contraseña">Contraseña</label>
+                <input type="password" name="contraseña" id="contraseña"  value="<% if (editing) { %><%= user.contraseña %><% } %>">
+            </div>
+            <% if (editing) { %>
+                <input type="hidden" value="<%= user.id %>" name="userId">
+            <% } %>
+            <button class="btn" type="submit"><% if (editing) { %>Update User<% } else { %>Crear Cuenta<% } %></button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>
