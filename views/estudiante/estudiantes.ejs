@@ -5,8 +5,6 @@
             <main>
                 <% if (prods == 0) { %>
                     <h1>Sin estudiantes</h1>
-                    <a class="<%= path === '/estudiante/add-estudiante' ? 'active' : '' %> nav-item nav-link" href="/estudiante/add-estudiante">AÑADIR ESTUDIANTES
-                    </a>
                 <% } else if (prods.length > 0) { %>
                     <h1>Estudiantes existentes</h1>
                     <div class="grid">
@@ -34,14 +32,17 @@
                                 </div>
                                 <div class="card__actions">
                                     <a href="/estudiante/edit-estudiante/<%= estudiante._id %>?edit=true" class="btn">Edit</a>
-                                    <form action="/estudiante/delete-estudiante" method="POST">
+                                    <form id="eliminarEstudianteForm_<%= estudiante._id %>" action="/estudiante/delete-estudiante" method="POST">
                                         <input type="hidden" value="<%= estudiante._id %>" name="estudianteId">
-                                        <button class="btn" type="submit">Eliminar</button>
+                                        <button class="btn" type="button" onclick="confirmarEliminacion('<%= estudiante._id %>')">Eliminar</button>
                                     </form>
                                 </div>
                             </article>
                         <% } %>
+                        
                     </div>
                 <% } %>
+                <a class="<%= path === '/estudiante/add-estudiante' ? 'active' : '' %> nav-item nav-link" href="/estudiante/add-estudiante">AÑADIR ESTUDIANTES
+                </a>
             </main>
             <%- include('../includes/end.ejs') %>

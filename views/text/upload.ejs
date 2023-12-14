@@ -22,11 +22,11 @@
       </form>
     </div>
     <div>
-      <h1>Lista de Textos</h1>
       <% if (pdfs.length === 0) { %>
         <h1>Sin Textos</h1>
       <% } else { %>
         <div class="grid">
+          <h1>Lista de Textos</h1>
           <% pdfs.forEach(function(pdf) { %>
             <article class="card PdfText-item">
               <header class="card__header">
@@ -36,9 +36,9 @@
               </header>
               <div class="card__actions">
                 <a href="/text/edit/<%= pdf._id %>?edit=true" class="btn">Editar</a>
-                <form action="/text/delete" method="POST">
+                <form id="eliminarTextoForm_<%= pdf._id %>" action="/text/delete" method="POST">
                   <input type="hidden" value="<%= pdf._id %>" name="pdfId">
-                  <button class="btn" type="submit">Eliminar</button>
+                  <button class="btn" type="button" onclick="confirmarEliminacionTexto('<%= pdf._id %>')">Eliminar</button>
                 </form>
               </div>
             </article>

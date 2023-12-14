@@ -8,7 +8,6 @@
   <%- include('../includes/navigation.ejs') %>
   <main class="container mt-3">
     <h1>Karaoke</h1>
-
     <div class="form-group">
       <label for="text">Seleccionar Texto:</label>
       <select class="form-control" name="text" id="text">
@@ -17,21 +16,6 @@
         <% }); %>
       </select>
     </div>
-
-    <div class="form-group">
-      <label for="speed">Seleccionar Velocidad de Lectura:</label>
-      <select class="form-control" name="speed" id="speed">
-        <option value="1">Lenta</option>
-        <option value="2">Normal</option>
-        <option value="3">Rápida</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="date">Seleccionar Fecha:</label>
-      <input type="date" class="form-control" name="date" id="date" required>
-    </div>
-
     <div class="form-group">
       <label for="estudiante">Seleccionar Estudiante:</label>
       <select class="form-control" name="estudiante" id="estudiante">
@@ -45,7 +29,6 @@
       <input type="hidden" name="pdfId" id="selectedPdfId">
       <button id="karaokeStartBtn" type="button" class="btn btn-primary mt-2">Iniciar Karaoke</button>
     </form>
-
     <script>
       const karaokeStartBtn = document.getElementById('karaokeStartBtn');
 
