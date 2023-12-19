@@ -17,8 +17,9 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">TEST</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a class="<%= path === '/upload' ? 'active' : '' %> nav-item nav-link" href="/text/upload">TEXTOS</a>
-                                <a class="<%= path === '/test' ? 'active' : '' %> nav-item nav-link" href="/karaoke/test">KARAOKE</a>
+                                <a class="<%= path === '/upload' ? 'active' : '' %> dropdown-item" href="/text/upload">TEXTOS</a>
+                                <a class="<%= path === '/test' ? 'active' : '' %> dropdown-item" href="/karaoke/test">KARAOKE</a>
+                                <a class="<%= path === '/config' ? 'active' : '' %> dropdown-item" href="/dominio/config">DOMINIO LECTOR</a>
                                 <a href="#" class="dropdown-item">RESULTADOS</a>
                             </div>
                         </div>
@@ -27,7 +28,7 @@
                             <div class="dropdown-menu border-0 rounded-0 m-0">
                                 <a href="blog.html" class="dropdown-item">MIS DATOS</a>
                                 <a href="single.html" class="dropdown-item">MI PLAN</a>
-                                <form class="nav-item nav-link" action="/logout" method="POST">
+                                <form class="dropdown-item" action="/logout" method="POST">
                                     <button type="submit">CERRAR SESIÓN</button>
                                 </form>
                             </div>
@@ -37,8 +38,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">SESIÓN</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">
-                                <a class="<%= path === '/login' ? 'active' : '' %> nav-item nav-link" href="/login">INICIAR SESIÓN</a>
-                                <a class="<%= path === '/signup' ? 'active' : '' %> nav-item nav-link" href="/signup">REGISTRARSE</a>
+                                <a class="<%= path === '/login' ? 'active' : '' %> dropdown-item" href="/login">INICIAR SESIÓN</a>
+                                <a class="<%= path === '/signup' ? 'active' : '' %> dropdown-item" href="/signup">REGISTRARSE</a>
                             </div>
                         </div>
                         

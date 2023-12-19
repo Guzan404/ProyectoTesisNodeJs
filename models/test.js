@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const testSchema = new mongoose.Schema({
-    velocidadLectura: {
-        type: Number,
-        required: true
-    },
     palabrasMinuto: {
         type: Number,
         required: true
@@ -16,7 +12,7 @@ const testSchema = new mongoose.Schema({
     textoId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'Text'
+        ref: 'PdfText'
     },
     estudianteId: {
         type: mongoose.Schema.Types.ObjectId,

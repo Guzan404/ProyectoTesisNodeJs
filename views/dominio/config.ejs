@@ -1,0 +1,54 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  <main class="container mt-3">
+    <h1>CONFIGURACIÓN DOMINIO LECTOR</h1>
+
+    <!-- Seleccionar Texto -->
+    <div class="form-group">
+      <label for="text">Seleccionar Texto:</label>
+      <select class="form-control" name="text" id="text">
+        <% pdfs.forEach(pdf => { %>
+        <option value="<%= pdf._id %>"><%= pdf.name %></option>
+        <% }); %>
+      </select>
+    </div>
+
+    <!-- Seleccionar Estudiante -->
+    <div class="form-group">
+      <label for="estudiante">Seleccionar Estudiante:</label>
+      <select class="form-control" name="estudiante" id="estudiante">
+        <% estudiantes.forEach(estudiante => { %>
+        <option value="<%= estudiante._id %>" data-curso="<%= estudiante.curso %>"><%= estudiante.nombre %></option>
+        <% }); %>
+      </select>
+    </div>
+
+    <!-- Seleccionar Curso -->
+    <div class="form-group">
+      <label for="curso">Seleccionar Curso:</label>
+      <select class="form-control" name="curso" id="curso" disabled>
+        <% cursos.forEach(curso => { %>
+        <option value="<%= curso %>"><%= curso %></option>
+        <% }); %>
+      </select>
+    </div>
+
+  </main>
+
+  <!-- Script para manejar el cambio en el select de Estudiante -->
+  <script>
+    $(document).ready(function () {
+      $('#estudiante').change(function () {
+        var selectedEstudiante = $(this).find('option:selected');
+        var cursoValue = selectedEstudiante.data('curso');
+        $('#curso').val(cursoValue);
+      });
+    });
+  </script>
+
+  <%- include('../includes/end.ejs') %>
+</body>
+</html>

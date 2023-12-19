@@ -16,10 +16,12 @@ function confirmarEliminacionTexto(pdfId) {
         document.getElementById('eliminarTextoForm_' + pdfId).submit();
     }
 }
-
+$(document).ready(function() {
+    // Inicializa los componentes de Bootstrap, incluido el dropdown
+    $('[data-toggle="dropdown"]').dropdown();
+});
 
 $(document).ready(function() {
-    console.log("Script de desplazamiento suave cargado");
     $("a.nav-item.nav-link[href='#contacto']").on('click', function(e) {
         // Evita el comportamiento predeterminado del enlace
         e.preventDefault();
@@ -33,3 +35,4 @@ $(document).ready(function() {
         }, 1000); // Ajusta la duración del desplazamiento según sea necesario
     });
 });
+

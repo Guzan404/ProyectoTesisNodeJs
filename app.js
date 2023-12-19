@@ -31,6 +31,7 @@ const rutasDeUsuarios = require('./routes/user');
 const rutasText = require('./routes/text');
 const rutasTest= require('./routes/test');
 const indexRoutes = require ('./routes/index');
+const dominioRoutes = require('./routes/dominio');
 const rutasEstudiante = require('./routes/estudiante');
 const authRoutes = require ('./routes/auth');
 
@@ -72,6 +73,7 @@ app.use((req,res,next)=>{
 app.use('/user',rutasDeUsuarios);
 app.use('/karaoke',rutasTest);
 app.use('/estudiante',rutasEstudiante);
+app.use('/dominio', dominioRoutes);
 app.use('/text',rutasText);
 app.use('/',indexRoutes);
 app.use(authRoutes);

@@ -1,6 +1,5 @@
 const Estudiante = require('../models/estudiante');
-const Text = require('../models/text'); // Ajusta según el nuevo nombre del modelo
-const Test = require('../models/test');
+const Text = require('../models/text'); // Ajusta según el nuevo nombre del modelo);
 
 // Obtiene la lista de textos
 exports.getViewKaraoke = async (req, res, next) => {
