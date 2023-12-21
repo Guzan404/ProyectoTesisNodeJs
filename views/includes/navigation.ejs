@@ -11,6 +11,7 @@
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav ml-auto py-0">
                     <a class="nav-item nav-link" href="/" >INICIO</a>
+                    <a class="nav-item nav-link" href="#contacto">CONTACTO</a>
                     <% if(isAuthenticated) {%>
                         <a class="<%= path === '/estudiante/estudiantes' ? 'active' : '' %> nav-item nav-link" href="/estudiante/estudiantes">ESTUDIANTES
                         </a>
@@ -34,7 +35,7 @@
                             </div>
                         </div>
                     <% }else{ %>
-                        <a class="nav-item nav-link" href="#contacto">CONTACTO</a>
+                        
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">SESIÓN</a>
                             <div class="dropdown-menu border-0 rounded-0 m-0">

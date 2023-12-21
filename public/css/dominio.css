@@ -1,0 +1,36 @@
+#contenidoTexto {
+    text-align: justify;
+    font-size: 26px;
+    line-height: 1.75;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    margin: 20px;
+    padding: 10px;
+  }
+
+  body {
+    position: relative;
+    margin: 0; /* Elimina el margen predeterminado del body */
+  }
+
+  #contenedorBoton {
+    position: fixed;
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajusta la posición vertical */
+    right: 10px; /* Pega el botón a la derecha con un padding */
+    z-index: 1000; /* Asegura que el botón esté encima del contenido */
+  }
+
+  button {
+    padding: 10px; /* Añade un padding al botón según tu preferencia */
+  }
+  h1 {
+    text-align: center;
+  }
+
+  #contador {
+    font-size: 30em; /* Ajusta el tamaño de la fuente según tus preferencias */
+    margin-bottom: 20px; /* Agrega un espacio entre el contador y el contenido */
+    text-align: center;
+    font-weight: bold;
+  }

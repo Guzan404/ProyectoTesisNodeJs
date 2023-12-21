@@ -326,12 +326,40 @@
                         <div class="col-lg-3 col-md-6 mb-5">
                             <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">RUTAS</h5>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>INICIO</a>
-                                <a class="text-white-50 mb-2" href="#"><i
-                                        class="fa fa-angle-right mr-2"></i>NOSOTROS</a>
-                                <a class="text-white-50 mb-2" href="#"><i
-                                        class="fa fa-angle-right mr-2"></i>SERVICIOS</a>
-                                <a class="text-white-50 mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>PLANES</a>
+                                <a class="text-white-50 mb-2 fa fa-angle-right mr-2" href="#"><i></i>INICIO</a>
+                                <% if(isAuthenticated) {%>
+                                    <a class="<%= path === '/estudiante/estudiantes' ? 'active' : '' %> text-white-50 mb-2 fa fa-angle-right mr-2" href="/estudiante/estudiantes">ESTUDIANTES
+                                    </a>
+                                    <div class="nav-item dropdown">
+                                        <a href="#" class="text-white-50 mb-2 fa fa-angle-right mr-2 dropdown-toggle" data-toggle="dropdown">TEST</a>
+                                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                                            <a class="<%= path === '/upload' ? 'active' : '' %> dropdown-item" href="/text/upload">TEXTOS</a>
+                                            <a class="<%= path === '/test' ? 'active' : '' %> dropdown-item" href="/karaoke/test">KARAOKE</a>
+                                            <a class="<%= path === '/config' ? 'active' : '' %> dropdown-item" href="/dominio/config">DOMINIO LECTOR</a>
+                                            <a href="#" class="dropdown-item">RESULTADOS</a>
+                                        </div>
+                                    </div>
+                                    <div class="nav-item dropdown">
+                                        <a href="#" class="text-white-50 mb-2 fa fa-angle-right mr-2 dropdown-toggle" data-toggle="dropdown">MI CUENTA</a>
+                                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                                            <a href="blog.html" class="dropdown-item">MIS DATOS</a>
+                                            <a href="single.html" class="dropdown-item">MI PLAN</a>
+                                            <form class="dropdown-item" action="/logout" method="POST">
+                                                <button type="submit">CERRAR SESIÓN</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                <% }else{ %>
+                                    
+                                    <div class="nav-item dropdown">
+                                        <a href="#" class="text-white-50 mb-2 fa fa-angle-right mr-2 dropdown-toggle" data-toggle="dropdown">SESIÓN</a>
+                                        <div class="dropdown-menu border-0 rounded-0 m-0">
+                                            <a class="<%= path === '/login' ? 'active' : '' %> dropdown-item" href="/login">INICIAR SESIÓN</a>
+                                            <a class="<%= path === '/signup' ? 'active' : '' %> dropdown-item" href="/signup">REGISTRARSE</a>
+                                        </div>
+                                    </div>
+                                    
+                                <% } %>
                             </div>
                         </div>
 

@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %>
+    <script src="/js/dominio.js"></script>
+    <script src="/js/dominiostart.js"></script>
+    <link rel="stylesheet" href="/css/dominio.css">
+    </head>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main class="container mt-3">
+                <h1 id="tituloPagina">INICIO DE PRUEBA</h1>
+
+                <!-- Contenido del Texto -->
+                <div id="contenidoTexto" style="display: none;">
+                    <%= textoContenido %>
+                </div>
+
+                <!-- Cuenta Regresiva -->
+                <div id="cuentaRegresiva" style="display: none;">
+                    <h2>Cuenta Regresiva</h2>
+                    <p id="contador">3</p>
+                </div>
+
+                <!-- Botón para iniciar la cuenta regresiva y el reconocimiento de voz -->
+                <button id="iniciarReconocimientoVozBtn">Iniciar Prueba</button>
+                <button onclick="alternarModoOscuro()">Modo Oscuro</button>
+                <div id="contenedorBoton">
+                    <button onclick="cancelarScroll()">Cancelar Scroll</button>
+                </div>
+
+                <!-- Botón para finalizar la prueba -->
+                <button id="finalizarPrueba">Finalizar Prueba</button>
+            </main>
+
+
+
+            <%- include('../includes/end.ejs') %>
+    </body>

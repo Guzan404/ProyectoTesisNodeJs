@@ -1,57 +1,79 @@
 const Test = require('../models/test');
-const Estudiante = require('../models/estudiante'); // Asegúrate de tener la ruta correcta al modelo
-const Text = require('../models/text'); // Ajusta según el nuevo nombre del modelo);
-
+const Estudiante = require('../models/estudiante');
+const Text = require('../models/text');
 
 exports.mostrarFormulario = async (req, res, next) => {
-    try {
+  try {
     // Obtén los textos del usuario autenticado
-        const pdfs = await Text.find({ userId: req.user._id });
+    const pdfs = await Text.find({ userId: req.user._id });
 
-        // Obtener estudiantes asociados al usuario
-        const estudiantes = await Estudiante.find({ userId: req.user._id });
+    // Obtener estudiantes asociados al usuario
+    const estudiantes = await Estudiante.find({ userId: req.user._id });
 
-        // Obtener cursos asociados al usuario
-        const cursos = await Estudiante.find({ userId: req.user._id }).distinct('curso');
+    // Obtener cursos asociados al usuario
+    const cursos = await Estudiante.find({ userId: req.user._id }).distinct('curso');
 
-        res.render('dominio/config', {
-            pageTitle: 'Config dominio',
-            path: 'dominio/config',
-            editing: false,
-            pdfs: pdfs,
-            estudiantes: estudiantes,
-            cursos: cursos,
-        });
-    } catch (error) {
-        res.status(500).render('error', { error: 'Error al obtener datos de test' });
-    }
+    res.render('dominio/config', {
+      pageTitle: 'Config dominio',
+      path: 'dominio/config',
+      editing: false,
+      pdfs: pdfs,
+      estudiantes: estudiantes,
+      cursos: cursos,
+    });
+  } catch (error) {
+    res.status(500).render('error', { error: 'Error al obtener datos de test' });
+  }
 };
 
-
-// Función para manejar el envío del formulario
-exports.manejarFormulario = async (req, res) => {
+exports.start = async (req, res) => {
   try {
-    // Obtén los datos del formulario desde el cuerpo de la solicitud
-    const { textoId, estudianteId, curso, fecha, observaciones } = req.body;
+    const { text, estudiante } = req.query;
 
-    // Crea una nueva instancia del modelo Test con los datos del formulario
+    // Obtén los datos del estudiante desde la base de datos
+    const estudianteSeleccionado = await Estudiante.findById(estudiante);
+
+    // Simplemente asumo que tienes un modelo Text para obtener el contenido del texto según el textId
+    const texto = await Text.findById(text);
+
+    if (!texto) {
+      console.error('El texto no fue encontrado.');
+      return res.status(404).send('El texto no fue encontrado.');
+    }
+    res.render('dominio/start', {
+      pageTitle: 'Inicio de Prueba',
+      path: 'dominio/start',
+      textoContenido: texto.content,
+      estudiante: estudianteSeleccionado,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error interno del servidor');
+  }
+};
+
+exports.guardarResultados = async (req, res) => {
+  try {
+    const { palabrasMinuto, totalPalabrasErroneas, textoId, estudianteId, userId, fecha, observaciones } = req.body;
+
+    // Crea una nueva instancia del modelo Test con los resultados
     const nuevoTest = new Test({
+      palabrasMinuto,
+      totalPalabrasErroneas,
       textoId,
       estudianteId,
-      userId: req.user._id, // Asume que tienes una sesión de usuario
-      curso,
+      userId,
       fecha,
       observaciones,
-      // Agrega más campos según sea necesario
     });
 
     // Guarda el nuevo test en la base de datos
     await nuevoTest.save();
 
-    // Redirige a la página principal o a donde sea necesario después de enviar el formulario
-    res.redirect('/ruta-de-destino');
+    // Envía una respuesta al cliente (puedes ajustar según tu lógica)
+    res.status(201).json({ mensaje: 'Resultados guardados con éxito.' });
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error interno del servidor');
+    res.status(500).json({ error: 'Error al guardar los resultados.' });
   }
 };

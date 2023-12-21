@@ -9731,4 +9731,14 @@ h6,
   box-shadow: 0 0 30px #CCCCCC;
 }
 
+/* Cambia el color de las flechas del carrusel a verde */
+.carousel-control-prev,
+.carousel-control-next {
+    color: green !important;
+}
 
+/* Opcional: Cambia el color del ícono de flecha */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%) !important;
+}
