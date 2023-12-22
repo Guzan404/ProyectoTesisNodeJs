@@ -1,24 +1,95 @@
+/* Agrega el estilo combinado aquí */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.formedit,
+.form-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+}
+
+.form-register {
+  width: 400px;
+  background: #24303c;
+  padding: 30px;
+  border-radius: 4px;
+  color: white;
+  box-shadow: 7px 13px 37px #000;
+}
+
+.form-register h4 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.controls,
 .form-control {
-    margin: 1rem 0;
-  }
-  
-  .form-control label,
-  .form-control input,
-  .form-control textarea {
-    display: block;
-    width: 100%;
-    margin-bottom: 0.25rem;
-  }
-  
-  .form-control input,
-  .form-control textarea {
-    border: 1px solid #a1a1a1;
-    font: inherit;
-    border-radius: 2px;
-  }
-  
-  .form-control input:focus,
-  .form-control textarea:focus {
-    outline-color: #00695c;
-  }
-  
+  width: 100%;
+  background: #24303c;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 1px solid #1f53c5;
+  font-size: 18px;
+  color: white;
+}
+
+.form-register p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.form-register a,
+.form-control a {
+  color: white;
+  text-decoration: none;
+}
+
+.form-register a:hover,
+.form-control a:hover {
+  text-decoration: underline;
+}
+
+.form-register .botons,
+.btn {
+  width: 100%;
+  background: #1f53c5;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+textarea {
+  resize: none;
+}

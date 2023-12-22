@@ -1,5 +1,5 @@
 const path = require('path');
-
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 const multer = require('multer');
 const app = express();
 
+const https = require('https');
 const tienda= new  MongoDBsession({
   uri: MONGODB_URI,
   collection:'sessions'
@@ -79,13 +80,26 @@ app.use('/',indexRoutes);
 app.use(authRoutes);
 app.use(errorController.get404);
 
+const privateKeyPath = path.resolve(__dirname, 'server.key');
+const certificatePath = path.resolve(__dirname, 'server.cert');
 
-mongoose
-  .connect(MONGODB_URI)
-  .then(result =>{
-    app.listen(3000);
-    console.log('conectado');
+const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
+const certificate = fs.readFileSync(certificatePath, 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+https
+  .createServer(credentials, app)
+  .listen(3000, () => {
+    console.log('Servidor HTTPS escuchando en el puerto 3000');
   })
-  .catch(err => {
-    console.log(err);
+  .on('error', (err) => {
+    console.error('Error en el servidor:', err.message);
+  });
+
+  mongoose
+  .connect(MONGODB_URI)
+  .then((result) => {
+    console.log('Conectado a MongoDB');
+  })
+  .catch((err) => {
+    console.error('Error al conectar a MongoDB:', err.message);
   });

@@ -1,27 +1,65 @@
-.product-form {
-    width: 20rem;
-    max-width: 90%;
-    margin: auto;
-    display: block;
+/* Estilo para las tarjetas de estudiantes */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.product-item {
-    width: 20rem;
-    max-width: 95%;
-    margin: 1rem;
+.card {
+    width: calc(25% - 20px); /* 25% del ancho con márgenes entre las tarjetas */
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    padding: 10px;
 }
 
-.product__title {
-    font-size: 1.2rem;
-    text-align: center;
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.product__price {
-    text-align: center;
-    color: #4d4d4d;
-    margin-bottom: 0.5rem;
+.card__header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
-.product__description {
-    text-align: center;
+.estudiante__nombre {
+    font-size: 1.2em;
+    margin-bottom: 5px;
 }
+
+.estudiante__apellido,
+.estudiante__edad,
+.estudiante__curso {
+    margin-bottom: 8px;
+}
+
+.card__actions {
+    margin-top: 10px;
+    display: flex; /* Para que los botones estén en línea */
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 10px;
+    text-decoration: none;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+/* Estilos para los encabezados h1 */
+.sin_estudiantes_h1,
+.estudiantes_existentes_h1 {
+    text-align: center; /* Centra el texto */
+    margin-top: 20px; /* Ajusta el espacio desde la barra de navegación */
+}
+

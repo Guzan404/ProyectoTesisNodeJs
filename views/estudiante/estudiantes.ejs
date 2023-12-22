@@ -1,23 +1,24 @@
 <%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/estudiante.css">
     </head>
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main>
                 <% if (prods == 0) { %>
-                    <h1>Sin estudiantes</h1>
+                    <h1 class="sin_estudiantes_h1">Sin estudiantes</h1>
                 <% } else if (prods.length > 0) { %>
-                    <h1>Estudiantes existentes</h1>
+                    <h1 class="estudiantes_existentes_h1">Estudiantes existentes</h1>
                     <div class="grid">
                         <% for (let estudiante of prods) { %>
                             <article class="card estudiante-item">
                                 <header class="card__header">
                                     <h1 class="estudiante__nombre">
-                                        <h2>Nombre: <%= estudiante.nombre %></h2>
+                                        <h2>Nombres:  <%= estudiante.nombre %></h2>
                                     </h1>
                                 </header>
                                 <div class="card__content">
                                     <h2 class="estudiante__apellido">
-                                        <h2>Apellido: <%= estudiante.apellido %></h2>
+                                        <h2>Apellidos:  <%= estudiante.apellido %></h2>
                                     </h2>
                                 </div>
                                 <div class="card__content">
@@ -31,7 +32,7 @@
                                     </h2>
                                 </div>
                                 <div class="card__actions">
-                                    <a href="/estudiante/edit-estudiante/<%= estudiante._id %>?edit=true" class="btn">Edit</a>
+                                    <a href="/estudiante/edit-estudiante/<%= estudiante._id %>?edit=true" class="btn">Editar</a>
                                     <form id="eliminarEstudianteForm_<%= estudiante._id %>" action="/estudiante/delete-estudiante" method="POST">
                                         <input type="hidden" value="<%= estudiante._id %>" name="estudianteId">
                                         <button class="btn" type="button" onclick="confirmarEliminacion('<%= estudiante._id %>')">Eliminar</button>
@@ -42,7 +43,7 @@
                         
                     </div>
                 <% } %>
-                <a class="<%= path === '/estudiante/add-estudiante' ? 'active' : '' %> nav-item nav-link" href="/estudiante/add-estudiante">AÑADIR ESTUDIANTES
+                <a class="<%= path === '/estudiante/add-estudiante' ? 'active' : '' %> btnAñadir" href="/estudiante/add-estudiante">AÑADIR ESTUDIANTES
                 </a>
             </main>
             <%- include('../includes/end.ejs') %>

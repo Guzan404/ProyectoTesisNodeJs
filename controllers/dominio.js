@@ -11,17 +11,18 @@ exports.mostrarFormulario = async (req, res, next) => {
     const estudiantes = await Estudiante.find({ userId: req.user._id });
 
     // Obtener cursos asociados al usuario
-    const cursos = await Estudiante.find({ userId: req.user._id }).distinct('curso');
+    const cursos = await Estudiante.distinct('curso', { userId: req.user._id });
 
     res.render('dominio/config', {
       pageTitle: 'Config dominio',
       path: 'dominio/config',
       editing: false,
-      pdfs: pdfs,
-      estudiantes: estudiantes,
-      cursos: cursos,
+      pdfs,
+      estudiantes,
+      cursos,
     });
   } catch (error) {
+    console.error('Error al obtener datos de test:', error);
     res.status(500).render('error', { error: 'Error al obtener datos de test' });
   }
 };
@@ -33,13 +34,14 @@ exports.start = async (req, res) => {
     // Obtén los datos del estudiante desde la base de datos
     const estudianteSeleccionado = await Estudiante.findById(estudiante);
 
-    // Simplemente asumo que tienes un modelo Text para obtener el contenido del texto según el textId
+    // Asumo que tienes un modelo Text para obtener el contenido del texto según el textId
     const texto = await Text.findById(text);
 
     if (!texto) {
       console.error('El texto no fue encontrado.');
       return res.status(404).send('El texto no fue encontrado.');
     }
+
     res.render('dominio/start', {
       pageTitle: 'Inicio de Prueba',
       path: 'dominio/start',
@@ -47,33 +49,33 @@ exports.start = async (req, res) => {
       estudiante: estudianteSeleccionado,
     });
   } catch (error) {
-    console.error(error);
+    console.error('Error interno del servidor:', error);
     res.status(500).send('Error interno del servidor');
   }
 };
 
 exports.guardarResultados = async (req, res) => {
   try {
-    const { palabrasMinuto, totalPalabrasErroneas, textoId, estudianteId, userId, fecha, observaciones } = req.body;
+      const { palabrasPorMinuto, totalPalabrasErroneas, textoId, estudianteId, userId, fecha, observaciones } = req.body;
 
-    // Crea una nueva instancia del modelo Test con los resultados
-    const nuevoTest = new Test({
-      palabrasMinuto,
-      totalPalabrasErroneas,
-      textoId,
-      estudianteId,
-      userId,
-      fecha,
-      observaciones,
-    });
+      // Crea una nueva instancia del modelo Test con los resultados
+      const nuevoTest = new Test({
+          palabrasMinuto: palabrasPorMinuto,
+          totalPalabrasErroneas,
+          textoId,
+          estudianteId,
+          userId,
+          fecha,
+          observaciones,
+      });
 
-    // Guarda el nuevo test en la base de datos
-    await nuevoTest.save();
+      // Guarda el nuevo test en la base de datos
+      await nuevoTest.save();
 
-    // Envía una respuesta al cliente (puedes ajustar según tu lógica)
-    res.status(201).json({ mensaje: 'Resultados guardados con éxito.' });
+      // Envía una respuesta al cliente (puedes ajustar según tu lógica)
+      res.status(201).json({ mensaje: 'Resultados guardados con éxito.' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al guardar los resultados.' });
+      console.error(error);
+      res.status(500).json({ error: 'Error al guardar los resultados.' });
   }
 };

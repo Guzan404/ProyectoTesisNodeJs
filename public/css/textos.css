@@ -1,0 +1,106 @@
+/* textos.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* Estilos para el encabezado h1 "Subir Archivo PDF" */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilos para la lista de textos */
+.textos_existentes_h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilos para el formulario de subida de archivos */
+form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+input[type="file"],
+select,
+button {
+    margin: 10px;
+}
+
+/* Estilos para la tarjeta de texto */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: calc(25% - 20px);
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    padding: 10px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card__header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.PdfText__nombre {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.card__actions {
+    display: flex;
+    align-items: center; /* Puedes probar con 'flex-start' u otros valores según necesites */
+}
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-right: 5px; /* Ajusta el margen según sea necesario */
+    text-decoration: none;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btna{
+    padding-top: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el mensaje "Sin Textos" */
+.sin_textos_h1{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btna{
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 20px;
+    margin-right: 5px; /* Ajusta el margen según sea necesario */
+    text-decoration: none;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
