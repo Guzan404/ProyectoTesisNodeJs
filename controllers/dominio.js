@@ -9,10 +9,8 @@ exports.mostrarFormulario = async (req, res, next) => {
 
     // Obtener estudiantes asociados al usuario
     const estudiantes = await Estudiante.find({ userId: req.user._id });
-
     // Obtener cursos asociados al usuario
     const cursos = await Estudiante.distinct('curso', { userId: req.user._id });
-
     res.render('dominio/config', {
       pageTitle: 'Config dominio',
       path: 'dominio/config',
@@ -31,12 +29,9 @@ exports.start = async (req, res) => {
   try {
     const { text, estudiante } = req.query;
 
-    // Obtén los datos del estudiante desde la base de datos
+    // se obtienen los datos del estudiante desde la base de datos
     const estudianteSeleccionado = await Estudiante.findById(estudiante);
-
-    // Asumo que tienes un modelo Text para obtener el contenido del texto según el textId
     const texto = await Text.findById(text);
-
     if (!texto) {
       console.error('El texto no fue encontrado.');
       return res.status(404).send('El texto no fue encontrado.');
@@ -56,17 +51,20 @@ exports.start = async (req, res) => {
 
 exports.guardarResultados = async (req, res) => {
   try {
-      const { palabrasPorMinuto, totalPalabrasErroneas, textoId, estudianteId, userId, fecha, observaciones } = req.body;
-
+      const { palabrasMinuto, totalPalabrasErroneas, fecha, observaciones,contenidoReconocimiento } = req.body;
+      const textoId = await Text.findOne({ userId: req.user._id }).select('_id');
+      const estudianteId = await Estudiante.findOne({ userId: req.user._id }).select('_id');
+      const userId = req.user._id;
       // Crea una nueva instancia del modelo Test con los resultados
       const nuevoTest = new Test({
-          palabrasMinuto: palabrasPorMinuto,
+          palabrasMinuto,
           totalPalabrasErroneas,
           textoId,
           estudianteId,
           userId,
           fecha,
           observaciones,
+          contenidoReconocimiento
       });
 
       // Guarda el nuevo test en la base de datos

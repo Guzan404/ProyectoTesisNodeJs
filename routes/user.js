@@ -3,17 +3,17 @@ const path = require('path');
 const express = require('express');
 
 const userController = require('../controllers/user');
-
+const isAuth = require('../middleware/is-auth');
 const router = express.Router();
 
 //  user/add-User => GET
-router.get('/add-user', userController.getAddUser);
+router.get('/add-user',isAuth, userController.getAddUser);
 
 // user/Users => GET
-router.get('/users', userController.getUsers);
+router.get('/users',isAuth, userController.getUsers);
 
 // //  user/add-User => POST
-router.post('/add-User', userController.postAddUser);
+router.post('/add-User',isAuth, userController.postAddUser);
 // 
 
 // router.get('/edit-User/:UserId', userController.getEditUser);

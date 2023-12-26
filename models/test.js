@@ -30,7 +30,10 @@ const testSchema = new mongoose.Schema({
     },
     observaciones: {
         type: String
-    }
+    },
+    contenidoReconocimiento: {
+        type: String
+    },
 });
 
 module.exports = mongoose.model('Test', testSchema);
