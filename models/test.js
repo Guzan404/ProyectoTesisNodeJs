@@ -32,7 +32,7 @@ const testSchema = new mongoose.Schema({
         type: String
     },
     contenidoReconocimiento: {
-        type: String
+        type: [String]
     },
 });
 

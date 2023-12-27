@@ -1,0 +1,30 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/estudiante.css">
+</head>
+<body>
+  <%- include('../includes/navigation.ejs') %>
+  <main>
+    <h1>Resultados de Prueba</h1>
+
+    <% if (resultados && resultados.length > 0) { %>
+      <div class="grid">
+        <% resultados.forEach(resultado => { %>
+          <article class="card">
+            <!-- Muestra el nombre del estudiante -->
+            <h1>Nombre Estudiante: <%= resultado.estudianteId.nombre %> <%= resultado.estudianteId.apellido %></h1>
+
+            <!-- Muestra la información de cada resultado -->
+            <h2>Palabras por minuto: <%= resultado.palabrasMinuto %></h2>
+            <h2>Total palabras erróneas: <%= resultado.totalPalabrasErroneas %></h2>
+            <h2>Fecha: <%= resultado.fecha %></h2>
+            <!-- Agrega más campos según sea necesario -->
+          </article>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>No hay resultados disponibles.</p>
+    <% } %>
+  </main>
+  <%- include('../includes/end.ejs') %>
+</body>
+</html>

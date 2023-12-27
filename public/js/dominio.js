@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     recognition.start();
   }
+
   function finalizarPrueba() {
     const tiempoFin = new Date().getTime();
     // Calcula el tiempo total en minutos
@@ -79,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
       observaciones,
       contenidoReconocimiento:palabrasReconocidas,
     };
-  
+    console.log(resultados)
     // Simulación de una llamada AJAX al servidor para guardar los resultados
     fetch('/dominio/guardarResultados', {
       method: 'POST',

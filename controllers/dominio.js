@@ -51,29 +51,37 @@ exports.start = async (req, res) => {
 
 exports.guardarResultados = async (req, res) => {
   try {
-      const { palabrasMinuto, totalPalabrasErroneas, fecha, observaciones,contenidoReconocimiento } = req.body;
-      const textoId = await Text.findOne({ userId: req.user._id }).select('_id');
-      const estudianteId = await Estudiante.findOne({ userId: req.user._id }).select('_id');
-      const userId = req.user._id;
-      // Crea una nueva instancia del modelo Test con los resultados
-      const nuevoTest = new Test({
-          palabrasMinuto,
-          totalPalabrasErroneas,
-          textoId,
-          estudianteId,
-          userId,
-          fecha,
-          observaciones,
-          contenidoReconocimiento
-      });
+    const {
+      palabrasMinuto,
+      totalPalabrasErroneas,
+      fecha,
+      observaciones,
+      contenidoReconocimiento
+    } = req.body;
 
-      // Guarda el nuevo test en la base de datos
-      await nuevoTest.save();
+    const textoId = await Text.findOne({ userId: req.user._id }).select('_id');
+    const estudianteId = await Estudiante.findOne({ userId: req.user._id }).select('_id');
+    const userId = req.user._id;
 
-      // Envía una respuesta al cliente (puedes ajustar según tu lógica)
-      res.status(201).json({ mensaje: 'Resultados guardados con éxito.' });
+    // Crea una nueva instancia del modelo Test con los resultados
+    const nuevoTest = new Test({
+      palabrasMinuto,
+      totalPalabrasErroneas,
+      fecha,
+      observaciones,
+      contenidoReconocimiento,
+      textoId,
+      estudianteId,
+      userId
+    });
+
+    // Guarda el nuevo test en la base de datos
+    await nuevoTest.save();
+
+    // Envía una respuesta al cliente (puedes ajustar según tu lógica)
+    res.status(201).json({ mensaje: 'Resultados guardados con éxito.' });
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Error al guardar los resultados.' });
+    console.error(error);
+    res.status(500).json({ error: 'Error al guardar los resultados.' });
   }
 };
