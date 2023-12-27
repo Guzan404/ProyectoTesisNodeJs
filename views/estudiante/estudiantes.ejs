@@ -1,49 +1,68 @@
 <%- include('../includes/head.ejs') %>
-<link rel="stylesheet" href="/css/estudiante.css">
+    <link rel="stylesheet" href="/css/estudiante.css">
     </head>
+
     <body>
         <%- include('../includes/navigation.ejs') %>
             <main>
-                <% if (prods == 0) { %>
+
+                <% if (prods==0) { %>
                     <h1 class="sin_estudiantes_h1">Sin estudiantes</h1>
-                <% } else if (prods.length > 0) { %>
-                    <h1 class="estudiantes_existentes_h1">Estudiantes existentes</h1>
-                    <div class="grid">
-                        <% for (let estudiante of prods) { %>
-                            <article class="card estudiante-item">
-                                <header class="card__header">
-                                    <h1 class="estudiante__nombre">
-                                        <h2>Nombres:  <%= estudiante.nombre %></h2>
-                                    </h1>
-                                </header>
-                                <div class="card__content">
-                                    <h2 class="estudiante__apellido">
-                                        <h2>Apellidos:  <%= estudiante.apellido %></h2>
-                                    </h2>
-                                </div>
-                                <div class="card__content">
-                                    <h2 class="estudiante__edad">
-                                        <h2>Edad: <%= estudiante.edad %></h2>
-                                    </h2>
-                                </div>
-                                <div class="card__content">
-                                    <h2 class="estudiante__curso">
-                                        <h2>Curso: <%= estudiante.curso %></h2>
-                                    </h2>
-                                </div>
-                                <div class="card__actions">
-                                    <a href="/estudiante/edit-estudiante/<%= estudiante._id %>?edit=true" class="btn">Editar</a>
-                                    <form id="eliminarEstudianteForm_<%= estudiante._id %>" action="/estudiante/delete-estudiante" method="POST">
-                                        <input type="hidden" value="<%= estudiante._id %>" name="estudianteId">
-                                        <button class="btn" type="button" onclick="confirmarEliminacion('<%= estudiante._id %>')">Eliminar</button>
-                                    </form>
-                                </div>
-                            </article>
-                        <% } %>
-                        
+                    <div class="btnContainer">
+                        <a class="<%= path === '/estudiante/add-estudiante' ? 'active' : '' %> btnAñadir"
+                            href="/estudiante/add-estudiante">AÑADIR ESTUDIANTES
+                        </a>
                     </div>
-                <% } %>
-                <a class="<%= path === '/estudiante/add-estudiante' ? 'active' : '' %> btnAñadir" href="/estudiante/add-estudiante">AÑADIR ESTUDIANTES
-                </a>
+
+                    <% } else if (prods.length> 0) { %>
+                        <h1 class="estudiantes_existentes_h1">Estudiantes existentes</h1>
+                        <div class="btnContainer">
+                            <a class="<%= path === '/estudiante/add-estudiante' ? 'active' : '' %> btnAñadir"
+                                href="/estudiante/add-estudiante">AÑADIR ESTUDIANTES
+                            </a>
+                        </div>
+                        <div class="grid">
+                            <% for (let estudiante of prods) { %>
+                                <article class="card estudiante-item">
+                                    <header class="card__header">
+                                        <h1 class="estudiante__nombre">
+                                            <h2>Nombres: <%= estudiante.nombre %>
+                                            </h2>
+                                        </h1>
+                                    </header>
+                                    <div class="card__content">
+                                        <h2 class="estudiante__apellido">
+                                            <h2>Apellidos: <%= estudiante.apellido %>
+                                            </h2>
+                                        </h2>
+                                    </div>
+                                    <div class="card__content">
+                                        <h2 class="estudiante__edad">
+                                            <h2>Edad: <%= estudiante.edad %>
+                                            </h2>
+                                        </h2>
+                                    </div>
+                                    <div class="card__content">
+                                        <h2 class="estudiante__curso">
+                                            <h2>Curso: <%= estudiante.curso %>
+                                            </h2>
+                                        </h2>
+                                    </div>
+                                    <div class="card__actions">
+                                        <a href="/estudiante/edit-estudiante/<%= estudiante._id %>?edit=true"
+                                            class="btn">Editar</a>
+                                        <form id="eliminarEstudianteForm_<%= estudiante._id %>"
+                                            action="/estudiante/delete-estudiante" method="POST">
+                                            <input type="hidden" value="<%= estudiante._id %>" name="estudianteId">
+                                            <button class="btn" type="button"
+                                                onclick="confirmarEliminacion('<%= estudiante._id %>')">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </article>
+                                <% } %>
+
+                        </div>
+                        <% } %>
+
             </main>
             <%- include('../includes/end.ejs') %>

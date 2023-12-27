@@ -1,10 +1,16 @@
 $(document).ready(function() {
+  var interval; // Declara interval como variable global
+
   $('#start').click(function() {
     var counter = 3;
 
     function decrementCounter() {
       if (counter === 0) {
         clearInterval(interval);
+        $('#countdown').css({
+          visibility: 'hidden',
+          height: '0',
+        });
 
         // Divide el texto en palabras
         var words = $('#karaoke-text').text().split(' ');
@@ -33,6 +39,18 @@ $(document).ready(function() {
       $('#countdown').html(counter);
     }
 
-    const interval = setInterval(decrementCounter, 1000);
+    interval = setInterval(decrementCounter, 1000);
   });
+
+  $('#restart').click(reiniciar);
+
+  function reiniciar() {
+    clearInterval(interval);
+
+    // Reinicia el contador
+    var counter = 3;
+
+    // Vacía el contenedor de texto
+    $('#text-content').empty();
+  }
 });

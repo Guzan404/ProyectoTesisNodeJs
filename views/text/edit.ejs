@@ -1,6 +1,7 @@
 <%- include('../includes/head.ejs') %>
     <link rel="stylesheet" href="/css/forms.css">
     <link rel="stylesheet" href="/css/estudiante.css">
+    <link rel="stylesheet" href="/css/edittexto.css">
 </head>
 
 <body>
@@ -8,17 +9,18 @@
 
     <main>
         <form class="estudiante" action="/text/edit" method="POST">
+
+            <div>
+                <input type="hidden" value="<%= pdfText._id %>" name="pdfTextId">
+                <button class="btn text" type="submit">Actualizar Texto</button>
+            </div>
             <div class="form-control">
                 <label for="name">Nombre </label>
                 <input type="text" name="name" id="name" value="<%= pdfText.name %>">
             </div>
             <div class="form-control">
                 <label for="content">Contenido </label>
-                <textarea name="content" id="content"><%= pdfText.content %></textarea>
-            </div>
-            <div>
-                <input type="hidden" value="<%= pdfText._id %>" name="pdfTextId">
-                <button class="btn" type="submit">Actualizar Texto</button>
+                <textarea name="content" id="content" class="form-textarea"><%= pdfText.content %></textarea>
             </div>
         </form>
     </main>

@@ -4,8 +4,9 @@ exports.mostrarResultados = async (req, res, next) => {
   try {
     const userId = req.user._id;
 
-    // Busca todos los resultados asociados al usuario actual
-    const resultados = await Test.find({ userId }).populate('estudianteId textoId');
+    const resultados = await Test.find({ userId })
+    .populate('estudianteId') // Poblar el campo 'estudianteId'
+    .populate('textoId');     // Poblar el campo 'textoId'
     
     if (!resultados || resultados.length === 0) {
       return res.status(404).render('error', { error: 'Resultados no encontrados' });

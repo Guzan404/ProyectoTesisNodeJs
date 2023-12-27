@@ -2,16 +2,19 @@
 .grid {
     display: flex;
     flex-wrap: wrap;
+  
 }
 
 .card {
-    width: calc(25% - 20px); /* 25% del ancho con márgenes entre las tarjetas */
+    width: calc(25% - 20px);
+    /* 25% del ancho con márgenes entre las tarjetas */
     margin: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
     padding: 10px;
+    margin-left: 100px;
 }
 
 .card:hover {
@@ -37,7 +40,8 @@
 
 .card__actions {
     margin-top: 10px;
-    display: flex; /* Para que los botones estén en línea */
+    display: flex;
+    /* Para que los botones estén en línea */
 }
 
 .btn {
@@ -56,10 +60,36 @@
 .btn:hover {
     background-color: #0056b3;
 }
+
 /* Estilos para los encabezados h1 */
 .sin_estudiantes_h1,
 .estudiantes_existentes_h1 {
-    text-align: center; /* Centra el texto */
-    margin-top: 20px; /* Ajusta el espacio desde la barra de navegación */
+    text-align: center;
+    /* Centra el texto */
+    margin-top: 20px;
+    /* Ajusta el espacio desde la barra de navegación */
 }
 
+/* Contenedor del botón */
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    /* Centra horizontalmente */
+    align-items: center;
+    /* Centra verticalmente */
+    height: 10vh;
+    /* Ajusta la altura según tus necesidades */
+}
+
+/* Estilo del botón */
+.btnAñadir {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}

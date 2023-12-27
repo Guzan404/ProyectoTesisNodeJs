@@ -1,24 +1,41 @@
 #text-content {
-  white-space: pre-wrap; /* Permitir saltos de línea y espacios */
+  white-space: pre-wrap;
+  /* Permitir saltos de línea y espacios */
   overflow: hidden;
   position: relative;
 }
 
 #karaoke-text {
   display: inline-block;
-  white-space: pre-wrap; /* Permitir saltos de línea y espacios */
+  white-space: pre-wrap;
+  /* Permitir saltos de línea y espacios */
   opacity: 0;
 }
 
 #text-content span {
   display: inline-block;
-  margin-right: 5px; /* Ajusta el espacio entre palabras según tus preferencias */
+  margin-right: 5px;
+  /* Ajusta el espacio entre palabras según tus preferencias */
+  font-size: 26px;
+  line-height: 1.75;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+}
+
+#countdown {
+  font-size: 30em;
+  /* Ajusta el tamaño de la fuente según tus preferencias */
+  margin-bottom: 20px;
+  /* Agrega un espacio entre el contador y el contenido */
+  text-align: center;
+  font-weight: bold;
 }
 
 @keyframes karaokeAnimation {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

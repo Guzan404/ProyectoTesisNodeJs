@@ -32,9 +32,12 @@
                     <% if (editing) { %>
                         <input type="hidden" value="<%= estudiante._id %>" name="estudianteId">
                         <% } %>
-                            <button class="btn" type="submit">
+                        <div class="btn-container">
+                            <button class="btn form-btn" type="submit">
                                 <% if (editing) { %>Actualizar estudiante<% } else { %> Añadir estudiante<% } %>
                             </button>
+                                <a href="/estudiante/estudiantes" class="btn link-btn">Ir a la vista de Estudiantes</a>
+                        </div>
                 </form>
             </main>
             <%- include('../includes/end.ejs') %>
