@@ -38,19 +38,6 @@ $(document).ready(function() {
       counter--;
       $('#countdown').html(counter);
     }
-
     interval = setInterval(decrementCounter, 1000);
   });
-
-  $('#restart').click(reiniciar);
-
-  function reiniciar() {
-    clearInterval(interval);
-
-    // Reinicia el contador
-    var counter = 3;
-
-    // Vacía el contenedor de texto
-    $('#text-content').empty();
-  }
 });

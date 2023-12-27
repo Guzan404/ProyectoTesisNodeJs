@@ -1,0 +1,60 @@
+/* Estilo para las tarjetas de estudiantes */
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: red;
+}
+.grid {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    flex-wrap: wrap;
+    height: 100vh; /* Ajusta la altura según tus necesidades */
+}
+
+.card {
+    width: calc(50% - 20px);
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    padding: 10px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card__header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.user__nombre .user__correo .user__contraseña {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.card__actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}

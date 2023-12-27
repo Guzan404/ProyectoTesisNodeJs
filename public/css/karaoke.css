@@ -11,6 +11,19 @@
   /* Permitir saltos de línea y espacios */
   opacity: 0;
 }
+.btn {
+  /* Estilos comunes para ambos botones */
+  padding: 8px 16px;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.link-btn {
+  background-color: #28a745;
+  color: #fff;
+  cursor: pointer;
+}
 
 #text-content span {
   display: inline-block;

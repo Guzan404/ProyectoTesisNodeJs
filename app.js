@@ -39,7 +39,7 @@ const authRoutes = require('./routes/auth');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(flash());
 app.use(
   session({
     secret: 'secret',
@@ -49,7 +49,7 @@ app.use(
   })
 );
 
-app.use(flash());
+
 
 app.use((req, res, next) => {
   if (!req.session.user) {

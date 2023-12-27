@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <form class="formedit" action="/user/<% if (editing) { %>edit-User<% } else { %>add-User<% } %>"
+            method="POST">
+            <div class="form-control">
+                <label class="form-label" for="nombre">Nombres </label>
+                <input class="form-input" type="text" name="nombre" id="nombre"
+                    value="<% if (editing) { %><%= user.nombre %><% } %>">
+            </div>
+            <div class="form-control">
+                <label class="form-label" for="correo">Correo </label>
+                <input class="form-input" type="email" name="correo" id="correo"
+                    value="<% if (editing) { %><%= user.correo %><% } %>">
+            </div>
+            <div class="form-control">
+                <label class="form-label" for="contraseña">Contraseña </label>
+                <input class="form-input" type="password" name="contraseña" id="contraseña"
+                    value="<% if (editing) { %><%= user.contraseña %><% } %>">
+            </div>
+            <% if (editing) { %>
+                <input type="hidden" value="<%= user.id %>" name="userId">
+            <% } %>
+            <div class="btn-container">
+                <button class="btn form-btn" type="submit">
+                    <% if (editing) { %>Actualizar usuario<% } else { %> Añadir usuario<% } %>
+                </button>
+                <a href="/user/users" class="btn link-btn">Ir a la vista de Usuarios</a>
+            </div>
+        </form>
+    </main>
+    <%- include('../includes/end.ejs') %>
+</body>
+</html>

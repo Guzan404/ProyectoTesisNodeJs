@@ -1,0 +1,36 @@
+.resultadotitulo{
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+  
+}
+
+.card {
+    width: calc(25% - 20px);
+    /* 25% del ancho con márgenes entre las tarjetas */
+    margin: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    padding: 10px;
+    margin-left: 100px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card__header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.estudiante__nombre{
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}

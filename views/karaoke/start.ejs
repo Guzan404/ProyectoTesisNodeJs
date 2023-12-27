@@ -8,9 +8,9 @@
   <main class="container mt-3">
     <h1>Karaoke Start</h1>
 
-    <button id="start">Cuenta Regresiva</button>
-    <button id="restart">Reiniciar</button>
-
+    <button class="btn link-btn"id="start">Cuenta Regresiva</button>
+    <button onclick="window.location.reload();" class="btn link-btn">Reinicio</button>
+    <a href="#" onclick="window.history.back();" class="btn link-btn">Ir hacia atrás</a>
     <div id="countdown"></div>
     <div id="text-content">
       <% for (let i = 0; i < pdfs.length; i++) { %>

@@ -1,30 +1,35 @@
 <%- include('../includes/head.ejs') %>
     <link rel="stylesheet" href="/css/forms.css">
-    <link rel="stylesheet" href="/css/auth.css">
 </head>
 
 <body>
    <%- include('../includes/navigation.ejs') %>
 
     <main>
-        <form class="login-form" action="/signup" method="POST">
+        <% if (errorMessage) { %>
+            <div class="error-message"><%= errorMessage %></div>
+        <% } %>
+        <form class="formedit" action="/signup" method="POST">
             <div class="form-control">
-                <label for="nombre">NOMBRE</label>
-                <input type="nombre" name="nombre" id="nombre">
+                <label class="form-label"for="nombre">NOMBRE</label>
+                <input class="form-input"type="nombre" name="nombre" id="nombre">
             </div>
             <div class="form-control">
-                <label for="correo">CORREO</label>
-                <input type="correo" name="correo" id="correo">
+                <label class="form-label"for="correo">CORREO</label>
+                <input class="form-input"type="correo" name="correo" id="correo">
             </div>
             <div class="form-control">
-                <label for="contraseña">CONTRASEÑA</label>
-                <input type="contraseña" name="contraseña" id="contraseña">
+                <label class="form-label"for="contraseña">CONTRASEÑA</label>
+                <input class="form-input"type="contraseña" name="contraseña" id="contraseña">
             </div>
             <div class="form-control">
-                <label for="confirmcontraseña">CONFIMAR CONTRASEÑA</label>
-                <input type="contraseña" name="confirmcontraseña" id="confirmcontraseña">
+                <label class="form-label"for="confirmcontraseña">CONFIMAR CONTRASEÑA</label>
+                <input class="form-input"type="contraseña" name="confirmcontraseña" id="confirmcontraseña">
             </div>
-            <button class="btn" type="submit">CREAR CUENTA</button>
+            <div class="btn-container">
+                <button class="btn form-btn" type="submit">CREAR CUENTA</button>
+                <a href="/login" class="btn link-btn">INICIAR SESIÓN</a>
+            </div>
         </form>
     </main>
 <%- include('../includes/end.ejs') %>

@@ -30,17 +30,17 @@ exports.postAddUser = (req, res, next) => {
     });
 };
 exports.getUsers = (req, res, next) => {
-  User.find()
-    .then(users => {
-      res.render('user/users', {
-        prods: users,
-        pageTitle: 'Todos los usuarios',
-        path: '/users'
-      });
-    })
-    .catch(err => {
-      console.log(err);
+  // Verifica si el usuario está autenticado
+  if (req.session.isLoggedIn) {
+    const currentUser = req.user; // Accede al usuario actual desde la sesión
+    res.render('user/users', {
+      prods: [currentUser], // Pasa el usuario actual como un arreglo
+      pageTitle: 'Tu perfil',
+      path: '/user',
     });
+  } else {
+    res.redirect('/login'); // Redirige a la página de inicio de sesión si el usuario no está autenticado
+  }
 };
 exports.getUser = (req, res, next) => {
   const prodId = req.params.UserId;
@@ -55,4 +55,59 @@ exports.getUser = (req, res, next) => {
     .catch(err => {
       console.log(err);
     });
+};
+exports.getEditUser = (req, res, next) => {
+  const editMode = req.query.edit;
+  if (!editMode) {
+    return res.redirect('/');
+  }
+  const currentUser = req.user; // Ajusta el nombre del parámetro a camelCase
+  User.findById(currentUser)
+    .then(user => {
+      if (!user) {
+        return res.redirect('/');
+      }
+      res.render('user/edit-user', {
+        pageTitle: 'Editar Usuario',
+        path: '/user/edit-user',
+        editing: editMode,
+        user: user
+      });
+    })
+    .catch(err => console.log(err));
+};
+const bcrypt = require('bcryptjs');
+
+exports.postEditUser = (req, res, next) => {
+  const userId = req.body.userId;
+  const updatedNombre = req.body.nombre;
+  const updatedCorreo = req.body.correo;
+  const updatedContraseña = req.body.contraseña;
+
+  User.findById(userId)
+    .then(user => {
+      if (!user) {
+        return res.redirect('/');
+      }
+
+      user.nombre = updatedNombre;
+      user.correo = updatedCorreo;
+
+      // Verifica si la contraseña se ha actualizado antes de aplicar el hash
+      if (updatedContraseña) {
+        // Hash de la nueva contraseña
+        return bcrypt.hash(updatedContraseña, 12)
+          .then(hashedContraseña => {
+            user.contraseña = hashedContraseña;
+            return user.save();
+          });
+      }
+
+      return user.save();
+    })
+    .then(result => {
+      console.log('Usuario actualizado!');
+      res.redirect('/user/users');
+    })
+    .catch(err => console.log(err));
 };

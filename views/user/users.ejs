@@ -1,43 +1,41 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/forms.css">
-    <link rel="stylesheet" href="/css/user.css">
-    </head>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/user.css">
+</head>
 
-    <body>
-        <%- include('../includes/navigation.ejs') %>
-            <main>
-                <% if (prods.length> 0) { %>
-                    <div class="grid">
-                        <% for (let user of prods) { %>
-                            <article class="card user-item">
-                                <header class="card__header">
-                                    <h1 class="user__nombre">
-                                        <%= user.nombre%>
-                                    </h1>
-                                </header>
-                                <div class="card__content">
-                                    <h2 class="user__correo">
-                                        <%= user.correo %>
-                                    </h2>
-                                </div>
-                                <div class="card__content">
-                                    <h2 class="user__contraseña">
-                                        <%= user.contraseña %>
-                                    </h2>
-                                </div>
-                                <div class="card__actions">
-                                    <a href="/user/users/<%= user.id %>?edit=true" class="btn">Edit</a>
-                                    <form action="/admin/delete-user" method="POST">
-                                        <input type="hidden" value="<%= user.id %>" name="userId">
-                                        <button class="btn" type="submit">Eliminar</button>
-                                    </form>
-
-                                </div>
-                            </article>
-                            <% } %>
-                    </div>
-                    <% } else { %>
-                        <h1>Usuario no encontrado :c !</h1>
-                        <% } %>
-            </main>
-            <%- include('../includes/end.ejs') %>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <% if (prods.length > 0) { %>
+            <div class="grid">
+                <% for (let user of prods) { %>
+                    <article class="card user-item">
+                        <header class="card__header">
+                            <h1 class="user__nombre">
+                                Nombre: <%= user.nombre %>
+                            </h1>
+                        </header>
+                        <div class="card__content">
+                            <h1 class="user__correo">
+                                Correo: <%= user.correo %>
+                            </h1>
+                        </div>
+                        <div class="card__content">
+                            <h1 class="user__contraseña">
+                                Contraseña: <%= user.contraseña %>
+                            </h1>
+                            <p>Tu contraseña se encuentra encriptada para mayor seguridad</p>
+                        </div>
+                        <div class="card__actions">
+                            <a href="/user/edit-User/<%= user.id %>?edit=true" class="btn">Editar Datos</a>
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+        <% } else { %>
+            <h1>Usuario no encontrado :c !</h1>
+        <% } %>
+    </main>
+    <%- include('../includes/end.ejs') %>
+</body>
+</html>
