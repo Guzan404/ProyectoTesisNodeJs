@@ -38,7 +38,7 @@ function alternarModoOscuro() {
 }
 // Realizar un scroll hacia abajo de forma lenta después de 5 segundos (5000 milisegundos)
 setTimeout(function () {
-    scrollSuave(document.body.scrollHeight, 120000); // Ajusta la duración según tus preferencias 3 minutos
+    scrollSuave(document.body.scrollHeight, 120000); // Ajusta la duración 3 minutos
 }, 5000);
 
 let cancelarScrollFlag = false;
