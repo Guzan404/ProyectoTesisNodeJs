@@ -29,7 +29,6 @@ const errorController = require('./controllers/error');
 const rutasDeUsuarios = require('./routes/user');
 
 const rutasText = require('./routes/text');
-const rutasTest = require('./routes/test');
 const resultadosRoutes = require('./routes/resultados');
 const indexRoutes = require('./routes/index');
 const dominioRoutes = require('./routes/dominio');
@@ -71,7 +70,6 @@ app.use((req, res, next) => {
 
 app.use('/user', rutasDeUsuarios);
 app.use('/resultados', resultadosRoutes);
-app.use('/karaoke', rutasTest);
 app.use('/estudiante', rutasEstudiante);
 app.use('/dominio', dominioRoutes);
 app.use('/text', rutasText);
